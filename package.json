@@ -1,22 +1,16 @@
 {
   "name": "ar-gamepad",
-  "version": "1.0.0",
-  "description": "",
-  "main": "AR_Gamepad_to_UDP.js",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/bjkemp/ar-gamepad.git"
-  },
-  "author": "The Kemp Bros.",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/bjkemp/ar-gamepad/issues"
-  },
-  "homepage": "https://github.com/bjkemp/ar-gamepad#readme",
-  "dependencies": {
-    "gamepad-api": "^1.0.1"
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^3.0.2",
+    "svelte": "^4.2.12",
+    "vite": "^5.2.0"
   }
 }
