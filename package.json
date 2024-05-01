@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/bjkemp/ar-gamepad/issues"
   },
-  "homepage": "https://github.com/bjkemp/ar-gamepad#readme"
+  "homepage": "https://github.com/bjkemp/ar-gamepad#readme",
+  "dependencies": {
+    "gamepad-api": "^1.0.1"
+  }
 }

@@ -1,0 +1,16 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  gamepad-api:
+    specifier: ^1.0.1
+    version: 1.0.1
+
+packages:
+
+  /gamepad-api@1.0.1:
+    resolution: {integrity: sha512-GPYGjmyxJM6mRllzwRg1mqy4OycmuBpciLRck+YuaPRqlrNbCy7jBW2DqeqI4uQb685TGx9X9EN8Bu61WL1Iwg==}
+    dev: false
