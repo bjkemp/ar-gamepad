@@ -1,38 +1,24 @@
-# create-svelte
+# AR Gamepad
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+This project provides a Svelte component that reads data from a joystick and transmits it over a UDP socket to a receiving program. It offers a user interface for selecting the joystick, setting the destination IP and port, and visualizing the transmitted data.
 
-## Creating a project
+### Features
 
-If you're seeing this, you've probably already done this step. Congrats!
+* User interface for joystick selection, IP/port configuration, and data display.
+* Uses `joypad.js` library for joystick access.
+* Transmits axes (mapped to 0-255 range) and buttons as binary values.
+* Includes a null terminator at the end of the data packet.
+* Configurable sample rate for data transmission.
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+### Installation
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+1. **Prerequisites:** Ensure you have Node.js and npm (or pnpm) installed.
+2. **Clone the repository:** Use `git clone https://github.com/bjkemp/ar-gamepad` to clone this project.
+3. **Install dependencies:** Navigate to the project directory and run `npm install` (or `pnpm install`) to install required packages.
 
-## Developing
+### Usage
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+1. **Start the development server:** Run `npm run dev` (or `pnpm run dev`) to start the development server, usually accessible at `http://localhost:5173/`.
+2. **Select joystick and configure:** Use the UI to select the desired joystick and enter the destination IP address and port number.
+3. **Control:** Move the joystick axes and buttons to send data. The sent data will be displayed in the component.
+4. **Exit:** Close the browser tab or terminal window to stop the development server.
