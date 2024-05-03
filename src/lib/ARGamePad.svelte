@@ -4,7 +4,7 @@
 
   const listener = new GamepadListener(/* options*/);
 
-  listener.discover()
+  
 
   let connected = false;
   let gamepadStateInterval;
@@ -72,6 +72,8 @@
 
   onMount(async () => {
     listener.start();
+    console.log(navigator.getGamepads())
+
   });
 
   onDestroy(() => {
