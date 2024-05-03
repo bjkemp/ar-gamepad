@@ -11,6 +11,7 @@
   let udpSocket;
 
   let selectedGamepadIndex = 0;
+  let gamepadId = '';
   let udpIp = 'localhost';
   let udpPort = 8080;
 
@@ -43,7 +44,15 @@
     selectedGamepadIndex = Math.min(selectedGamepadIndex, gamepads.length - 1); // Clamp index
 
     const gamepad = gamepads[selectedGamepadIndex];
+
+    if (!gamepad) {
+      console.error('Gamepad not found!');
+      return;
+    }
+
     console.log(`Using gamepad: ${gamepad.id}`); // Joypad doesn't provide product name
+    gamepadId = gamepad.id;
+    connected = true;
 
     udpSocket = new WebSocket(`ws://${udpIp}:${udpPort}`); // Replace with dgram for raw UDP
     udpSocket.onopen = () => console.log('UDP socket connected');
@@ -71,9 +80,10 @@
   });
 </script>
 
-<button on:click={connectGamepad}>Connect Gamepad</button>
+<button on:click={connectGamepad}>Connect</button>
 
-<p>Selected Gamepad Index: {JSON.stringify(listener, null, 2 )}</p>
+<p>Selected Gamepad Index: {selectedGamepadIndex}</p>
+<p>Selected Gamepad ID: {gamepadId}</p>
 <p>Connected State: {connected}</p>
 <p>UDP IP: {udpIp}</p>
 <p>UDP Port: {udpPort}</p>
