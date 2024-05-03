@@ -1,8 +1,12 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
-  import 'joypad.js'; // Import Joypad
+  import { GamepadListener } from 'gamepad.js';
 
-  let joypad;
+  const listener = new GamepadListener(/* options*/);
+
+  listener.discover()
+
+  let connected = false;
   let gamepadStateInterval;
   let udpSocket;
 
@@ -10,15 +14,27 @@
   let udpIp = 'localhost';
   let udpPort = 8080;
 
-  const getGamepads = async () => {
-    return new Promise((resolve) => {
-      const gamepads = joypad.getPressed(); // Get currently pressed gamepads
-      resolve(gamepads);
-    });
-  };
+  listener.on('connect', () => {
+    console.log('Gamepad connected');
+    connected = true;
+  });
+
+  listener.on('disconnect', () => {
+    console.log('Gamepad disconnected');
+    connected = false;
+  });
+
+  listener.on('gamepad:button', (e) => {
+    console.log('Button event:', e);
+  });
+
+  listener.on('gamepad:axis', (e) => {
+    console.log('Axis event:', e);
+  });
+
 
   const connectGamepad = async () => {
-    const gamepads = await getGamepads();
+    const gamepads = await navigator.getGamepads();
     if (gamepads.length === 0) {
       console.error('No gamepads found!');
       return;
@@ -46,18 +62,18 @@
   };
 
   onMount(async () => {
-    joypad.init(); // Initialize Joypad library
+    listener.start();
   });
 
   onDestroy(() => {
     clearInterval(gamepadStateInterval);
-    joypad.stop(); // Stop Joypad polling
     if (udpSocket) udpSocket.close();
   });
 </script>
 
 <button on:click={connectGamepad}>Connect Gamepad</button>
 
-<p>Selected Gamepad Index: {selectedGamepadIndex}</p>
+<p>Selected Gamepad Index: {JSON.stringify(listener, null, 2 )}</p>
+<p>Connected State: {connected}</p>
 <p>UDP IP: {udpIp}</p>
 <p>UDP Port: {udpPort}</p>
