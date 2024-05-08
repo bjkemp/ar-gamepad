@@ -6,7 +6,7 @@ This project provides a Svelte component that reads data from a joystick and tra
 
 * User interface for joystick selection, IP/port configuration, and data display.
 * Uses `joypad.js` library for joystick access.
-* Transmits axes (mapped to 0-255 range) and buttons as binary values.
+* Transmits both axes and buttons (mapped to 0-255 range).
 * Includes a null terminator at the end of the data packet.
 * Configurable sample rate for data transmission.
 
